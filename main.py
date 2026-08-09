@@ -136,3 +136,6 @@ async def read_root():
         </body>
     </html>
     """
+@app.get("/")
+async def read_root():
+    return {"status": "Aadi Omni-Agent is online and running!"}
