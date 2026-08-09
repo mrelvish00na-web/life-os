@@ -114,10 +114,6 @@ async def run_monolithic_21_tabs_pipeline(state: GlobalControlState):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
-@app.get("/")
-async def read_root():
-    return {"status": "Aadi Omni-Agent is online and running!"}
-from fastapi.responses import HTMLResponse
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root():
