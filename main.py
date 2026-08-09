@@ -115,27 +115,6 @@ if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
 
-@app.get("/", response_class=HTMLResponse)
-async def read_root():
-    return """
-    <html>
-        <head>
-            <title>Aadi Omni-Agent</title>
-            <style>
-                body { font-family: Arial, sans-serif; background: #0f172a; color: #fff; text-align: center; padding-top: 50px; }
-                h1 { color: #38bdf8; }
-                .box { background: #1e293b; padding: 20px; border-radius: 10px; display: inline-block; margin-top: 20px; }
-            </style>
-        </head>
-        <body>
-            <h1>Aadi Omni-Agent is Live! 🚀</h1>
-            <div class="box">
-                <p>Status: <b>Online & Running</b></p>
-                <p>Your backend and AI system are successfully connected.</p>
-            </div>
-        </body>
-    </html>
-    """
 @app.get("/")
 async def read_root():
     return {"status": "Aadi Omni-Agent is online and running!"}
