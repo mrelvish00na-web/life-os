@@ -1,5 +1,3 @@
-**`app/page.js`**
-```jsx
 "use client";
 
 import React, {
@@ -300,7 +298,7 @@ const CommandBar = memo(function CommandBar({ value, onChange, onSubmit }) {
           type="text"
           value={value}
           onChange={onChange}
-          placeholder="Command your Life OS via natural language (e.g. 'route to ledger', 'optimize system arrays')..."
+          placeholder="Command your Life OS via natural language..."
           className="flex-1 bg-black border border-slate-800 rounded-lg px-4 py-2.5 text-xs font-mono text-cyan-300 focus:outline-none focus:border-cyan-500 transition-colors placeholder-slate-700"
         />
         <button
@@ -328,8 +326,7 @@ const GenericTabPanel = memo(function GenericTabPanel({ tab, onReturn }) {
         Autonomous Engine Engaged
       </div>
       <p className="text-xs text-slate-500 leading-relaxed mb-5">
-        [Active State Protocol]: यह विशिष्ट मॉड्यूल पूरी तरह से स्वचालित (Automated Runtime Architecture) पर चल रहा
-        है। इसकी सिंक्रनाइज़्ड डेटा स्ट्रीम्स सीधे आपके कोर रिपोजिटरी में मैप हो रही हैं।
+        [Active State Protocol]: यह विशिष्ट मॉड्यूल पूरी तरह से स्वचालित (Automated Runtime Architecture) पर चल रहा है।
       </p>
       {entries.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
@@ -346,7 +343,7 @@ const GenericTabPanel = memo(function GenericTabPanel({ tab, onReturn }) {
         </div>
       ) : (
         <p className="text-xs text-amber-500 font-mono mb-5">
-          इस मॉड्यूल के लिए कोई डिस्प्ले-योग्य मेटाडेटा नहीं मिला — फॉलबैक स्टेट सुरक्षित रूप से लागू है।
+          इस मॉड्यूल के लिए कोई डिस्प्ले-योग्य मेटाडेटा नहीं मिला।
         </p>
       )}
       <button
@@ -369,7 +366,6 @@ export default function AadiOmniAgentLifeOS() {
   const [terminalFeed, setTerminalFeed] = useState([
     "[System Initialization] Aadi Omni-Agent Life OS Online.",
     "[Orchestrator Engine] Initializing cross-tab semantic sync...",
-    "[AI Agent] Standard loop listening on Port 3000...",
   ]);
 
   const isMountedRef = useRef(true);
@@ -440,7 +436,7 @@ export default function AadiOmniAgentLifeOS() {
       if (!trimmed) return;
 
       const cmd = trimmed.toLowerCase();
-      let response = "[Master AI Co-Pilot] Command cached. No explicit cross-tab route matched this pattern.";
+      let response = "[Master AI Co-Pilot] Command cached.";
       let nextActiveTab = null;
 
       if (cmd.includes("optimize") || cmd.includes("clear")) {
@@ -449,19 +445,16 @@ export default function AadiOmniAgentLifeOS() {
           2: { ...prev[2], focusScore: 98 },
           10: { ...prev[10], status: "Connected" },
         }));
-        response = "[Master AI Co-Pilot] Structural optimization triggered: focus raised to 98%, API queues cleared.";
-      } else if (cmd.includes("finance") || cmd.includes("ledger") || cmd.includes("money")) {
+        response = "[Master AI Co-Pilot] Structural optimization triggered.";
+      } else if (cmd.includes("finance") || cmd.includes("ledger")) {
         nextActiveTab = 4;
-        response = "[Master AI Co-Pilot] Routing interface focus to Tab 4 (Secure Financial Ledger Engine).";
-      } else if (cmd.includes("research") || cmd.includes("scrape")) {
+        response = "[Master AI Co-Pilot] Routing interface focus to Tab 4.";
+      } else if (cmd.includes("research")) {
         nextActiveTab = 1;
-        response = "[Master AI Co-Pilot] Routing interface focus to Tab 1 (Autonomous Research Matrix).";
-      } else if (cmd.includes("dashboard") || cmd.includes("master")) {
+        response = "[Master AI Co-Pilot] Routing interface focus to Tab 1.";
+      } else if (cmd.includes("dashboard")) {
         nextActiveTab = 21;
-        response = "[Master AI Co-Pilot] Restoring full viewport matrix to Tab 21 Omnipresent Command Center.";
-      } else if (cmd.includes("diagnostic") || cmd.includes("health")) {
-        nextActiveTab = 11;
-        response = "[Master AI Co-Pilot] Navigated to Tab 11 Telemetry Monitor. Performance indexing online.";
+        response = "[Master AI Co-Pilot] Restoring full viewport matrix to Tab 21.";
       }
 
       if (nextActiveTab !== null) setActiveTab(nextActiveTab);
@@ -482,7 +475,7 @@ export default function AadiOmniAgentLifeOS() {
 
   return (
     <div className="min-h-screen bg-[#020205] text-slate-200 font-sans selection:bg-cyan-500 selection:text-black antialiased">
-      <header className="border-b border-cyan-950/80 bg-slate-950/70 backdrop-blur-md px-6 py-4 flex items-center justify-between sticky top-0 z-50 shadow-[0_1px_10px_rgba(6,182,212,0.05)]">
+      <header className="border-b border-cyan-950/80 bg-slate-950/70 backdrop-blur-md px-6 py-4 flex items-center justify-between sticky top-0 z-50">
         <div className="flex items-center gap-3">
           <div className="w-2.5 h-2.5 bg-cyan-400 rounded-full animate-pulse shadow-[0_0_12px_#22d3ee]" />
           <h1 className="text-md font-mono uppercase tracking-widest font-black text-cyan-400">
@@ -499,7 +492,6 @@ export default function AadiOmniAgentLifeOS() {
               type="button"
               onClick={handleToggleAutonomous}
               className="text-slate-400 hover:text-white ml-2"
-              aria-label={autonomousAI ? "Pause autonomous engine" : "Resume autonomous engine"}
             >
               {autonomousAI ? <Pause size={12} /> : <Play size={12} />}
             </button>
@@ -553,35 +545,21 @@ export default function AadiOmniAgentLifeOS() {
     </div>
   );
 }
-```
-
-**`app/layout.js`**
-```jsx
-import "./globals.css";
-
-export const metadata = {
-  title: "Aadi Omni-Agent Life OS",
-  description: "Autonomous multi-agent life operating system dashboard.",
-};
-
-export default function RootLayout({ children }) {
-  return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
-  );
+{
+  "name": "Aadi Omni-Agent Life OS",
+  "short_name": "AadiOS",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#020205",
+  "theme_color": "#020205",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
 }
-```
-
-**`app/globals.css`**
-```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-```
-
-**`tailwind.config.js`**
-```js
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./app/**/*.{js,jsx}"],
@@ -590,20 +568,12 @@ module.exports = {
   },
   plugins: [],
 };
-```
-
-**`postcss.config.js`**
-```js
 module.exports = {
   plugins: {
     tailwindcss: {},
     autoprefixer: {},
   },
 };
-```
-
-**`package.json`**
-```json
 {
   "name": "aadi-omni-agent-life-os",
   "version": "1.2.0",
@@ -614,6 +584,7 @@ module.exports = {
     "start": "next start"
   },
   "dependencies": {
+    "@capacitor/core": "^5.0.0",
     "lucide-react": "^0.300.0",
     "next": "14.0.4",
     "react": "^18.2.0",
@@ -621,9 +592,10 @@ module.exports = {
     "recharts": "^2.10.3"
   },
   "devDependencies": {
+    "@capacitor/cli": "^5.0.0",
+    "@capacitor/android": "^5.0.0",
     "autoprefixer": "^10.4.16",
     "postcss": "^8.4.32",
     "tailwindcss": "^3.4.0"
   }
 }
-```
